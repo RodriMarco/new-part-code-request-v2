@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Brings the sandbox product links back into the Part Codes after Send to Sandbox. Admins only.</description>
+    <flowDefinition>PKR_Load_Sandbox_Build</flowDefinition>
+    <label>Load Sandbox Build</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

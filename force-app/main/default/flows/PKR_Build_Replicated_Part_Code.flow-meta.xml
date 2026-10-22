@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Runs in the sandbox only in practice: when a Part Code arrives from production (Prod Part Code Id set), builds its product, prices and costs with PKR_Build_Part_Code. In production the entry condition is never met.</description>
+    <environments>Default</environments>
+    <interviewLabel>PKR Build Replicated Part Code {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PKR Build Replicated Part Code</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Build_Part_Code</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Prod_Part_Code_Id__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Part_Code__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Build_Part_Code</name>
+        <label>Build Part Code</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>PKR_Build_Part_Code</flowName>
+        <inputAssignments>
+            <name>BuildTarget</name>
+            <value>
+                <stringValue>Sandbox</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>PartCodeId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

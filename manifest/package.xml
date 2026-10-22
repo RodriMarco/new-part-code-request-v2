@@ -17,10 +17,25 @@
         <members>Part_Code__c.Price_Americas__c</members>
         <members>Part_Code__c.Price_EMEA__c</members>
         <members>Part_Code__c.Cost__c</members>
+        <members>Part_Code__c.Product__c</members>
+        <members>Part_Code__c.Build_Status__c</members>
+        <members>Part_Code__c.Build_Error__c</members>
+        <members>Part_Code__c.Sandbox_Product2_Id__c</members>
+        <members>Part_Code__c.Sandbox_Product2_Url__c</members>
+        <members>Part_Code__c.Prod_Part_Code_Id__c</members>
+        <members>Part_Code_Request__c.Title__c</members>
+        <members>Part_Code_Request__c.summary_description__c</members>
+        <members>Part_Code_Request__c.Prod_PKR_Id__c</members>
+        <members>Part_Code_Request__c.Sent_to_Sandbox_Date__c</members>
+        <members>Part_Code_Request__c.Deployed_to_Production_Date__c</members>
+        <members>Part_Code_Request__c.Sandbox_Sync_Error__c</members>
         <name>CustomField</name>
     </types>
     <types>
         <members>New_Part_Code_Request</members>
+        <members>Part_Code_Request__c.Deploy_to_Production</members>
+        <members>Part_Code_Request__c.Send_to_Sandbox</members>
+        <members>Part_Code_Request__c.Load_Sandbox_Build</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -35,7 +50,25 @@
     </types>
     <types>
         <members>New_Part_Code_Request</members>
+        <members>PKR_Build_Part_Code</members>
+        <members>PKR_Build_Replicated_Part_Code</members>
+        <members>PKR_Cost_entries_creation</members>
+        <members>PKR_Deploy_To_Production</members>
+        <members>PKR_Load_Sandbox_Build</members>
+        <members>PKR_Multipricebook_STANDARD_entries_creation</members>
+        <members>PKR_Multipricebook_entries_creation</members>
+        <members>PKR_Send_To_Sandbox</members>
         <name>Flow</name>
+    </types>
+    <types>
+        <members>PKRSandboxBridge</members>
+        <members>PKRSandboxBridge_Test</members>
+        <members>PKRSandboxBuildLoader</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>PKR_Deploy_Products</members>
+        <name>CustomPermission</name>
     </types>
     <types>
         <members>Part_Code_Request__c</members>
@@ -43,6 +76,7 @@
     </types>
     <types>
         <members>Part_Code_Requests</members>
+        <members>PKR_Admin</members>
         <name>PermissionSet</name>
     </types>
     <version>62.0</version>

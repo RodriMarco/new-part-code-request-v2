@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Build_Status__c</fullName>
+    <description>Where the product for this Part Code has been created.</description>
+    <externalId>false</externalId>
+    <label>Build Status</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Built</fullName>
+                <default>true</default>
+                <label>Not Built</label>
+            </value>
+            <value>
+                <fullName>Built in Sandbox</fullName>
+                <default>false</default>
+                <label>Built in Sandbox</label>
+            </value>
+            <value>
+                <fullName>Built in Production</fullName>
+                <default>false</default>
+                <label>Built in Production</label>
+            </value>
+            <value>
+                <fullName>Error</fullName>
+                <default>false</default>
+                <label>Error</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

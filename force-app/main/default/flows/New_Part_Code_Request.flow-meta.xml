@@ -88,6 +88,18 @@
         </connector>
     </assignments>
     <description>Launched from the New Part Code Request button. Collects one or more Part Codes on a single screen using a Repeater, creates the Part Code Request and its Part Codes, then links to the new request.</description>
+    <dynamicChoiceSets>
+        <name>Product_Category_Choices</name>
+        <dataType>Picklist</dataType>
+        <picklistField>Product_Category__c</picklistField>
+        <picklistObject>Part_Code__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Product_Family_Choices</name>
+        <dataType>Picklist</dataType>
+        <picklistField>Product_Family__c</picklistField>
+        <picklistObject>Part_Code__c</picklistObject>
+    </dynamicChoiceSets>
     <environments>Default</environments>
     <interviewLabel>New Part Code Request {!$Flow.CurrentDateTime}</interviewLabel>
     <label>New Part Code Request</label>
@@ -267,16 +279,18 @@
             </fields>
             <fields>
                 <name>Product_Family</name>
+                <choiceReferences>Product_Family_Choices</choiceReferences>
                 <dataType>String</dataType>
                 <fieldText>Product Family</fieldText>
-                <fieldType>InputField</fieldType>
+                <fieldType>DropdownBox</fieldType>
                 <isRequired>false</isRequired>
             </fields>
             <fields>
                 <name>Product_Category</name>
+                <choiceReferences>Product_Category_Choices</choiceReferences>
                 <dataType>String</dataType>
                 <fieldText>Product Category</fieldText>
-                <fieldType>InputField</fieldType>
+                <fieldType>DropdownBox</fieldType>
                 <isRequired>false</isRequired>
             </fields>
             <fields>

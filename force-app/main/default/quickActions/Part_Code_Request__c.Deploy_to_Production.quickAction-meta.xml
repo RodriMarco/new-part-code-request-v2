@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Creates the Product2, prices and costs in this org for every Part Code of the request. Admins only.</description>
+    <flowDefinition>PKR_Deploy_To_Production</flowDefinition>
+    <label>Deploy to Production</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Replicates the request and its Part Codes to the sandbox, where the products are built. Admins only.</description>
+    <flowDefinition>PKR_Send_To_Sandbox</flowDefinition>
+    <label>Send to Sandbox</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>
