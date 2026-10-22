@@ -20,12 +20,13 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>Part_Code_Request__c.New_Part_Code_Request</members>
-        <name>WebLink</name>
+        <members>New_Part_Code_Request</members>
+        <name>QuickAction</name>
     </types>
     <types>
         <members>Part_Code_Request__c-Part Code Request Layout</members>
         <members>Part_Code__c-Part Code Layout</members>
+        <members>Global-Global Layout</members>
         <name>Layout</name>
     </types>
     <types>

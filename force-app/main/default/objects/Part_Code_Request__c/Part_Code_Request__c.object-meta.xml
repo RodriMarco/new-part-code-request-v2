@@ -29,9 +29,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Part Code Requests</pluralLabel>
-    <searchLayouts>
-        <listViewButtons>New_Part_Code_Request</listViewButtons>
-    </searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
