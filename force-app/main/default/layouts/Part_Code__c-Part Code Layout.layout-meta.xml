@@ -13,7 +13,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Product_Code_Request__c</field>
+                <field>Part_Code_Request__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

@@ -2,7 +2,7 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>View</actionName>
-        <content>Product_Code_Request_Record_Page</content>
+        <content>Part_Code_Request_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -21,14 +21,14 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Product Code Request</label>
+    <label>Part Code Request</label>
     <nameField>
-        <displayFormat>PCR-{00000}</displayFormat>
+        <displayFormat>PKR-{00000}</displayFormat>
         <label>Request Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Product Code Requests</pluralLabel>
+    <pluralLabel>Part Code Requests</pluralLabel>
     <searchLayouts>
         <listViewButtons>New_Part_Code_Request</listViewButtons>
     </searchLayouts>

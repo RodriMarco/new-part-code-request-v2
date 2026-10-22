@@ -34,7 +34,7 @@
         <fields>Price_Americas__c</fields>
         <fields>Price_EMEA__c</fields>
         <fields>Cost__c</fields>
-        <relatedList>Part_Code__c.Product_Code_Request__c</relatedList>
+        <relatedList>Part_Code__c.Part_Code_Request__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

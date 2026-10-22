@@ -2,7 +2,7 @@
 <WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>New_Part_Code_Request</fullName>
     <availability>online</availability>
-    <description>Launches the New Part Code Request screen flow from the Product Code Requests list view.</description>
+    <description>Launches the New Part Code Request screen flow from the Part Code Requests list view.</description>
     <displayType>massActionButton</displayType>
     <encodingKey>UTF-8</encodingKey>
     <linkType>url</linkType>

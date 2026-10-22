@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Record page for Product Code Request: Approval Status plus the Part Codes related list.</description>
+    <description>Record page for Part Code Request: Approval Status plus the Part Codes related list.</description>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
@@ -34,7 +34,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>parentFieldApiName</name>
-                    <value>Product_Code_Request__c.Id</value>
+                    <value>Part_Code_Request__c.Id</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListApiName</name>
@@ -103,8 +103,8 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Product Code Request Record Page</masterLabel>
-    <sobjectType>Product_Code_Request__c</sobjectType>
+    <masterLabel>Part Code Request Record Page</masterLabel>
+    <sobjectType>Part_Code_Request__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>
     </template>
