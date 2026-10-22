@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Who must approve a Part Code Request. One Approval record is created per active definition when a request is created. The label is used as the Sector of the approval.</description>
+    <label>PKR Approver Definition</label>
+    <pluralLabel>PKR Approver Definitions</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

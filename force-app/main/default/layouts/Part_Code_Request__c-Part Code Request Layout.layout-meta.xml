@@ -51,6 +51,16 @@
         <fields>Cost__c</fields>
         <relatedList>Part_Code__c.Part_Code_Request__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Sector__c</fields>
+        <fields>Approver__c</fields>
+        <fields>Status__c</fields>
+        <fields>Decision_By__c</fields>
+        <fields>Decision_Date__c</fields>
+        <fields>Round__c</fields>
+        <relatedList>PKR_Approval__c.Part_Code_Request__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

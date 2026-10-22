@@ -3,6 +3,8 @@
     <types>
         <members>Part_Code_Request__c</members>
         <members>Part_Code__c</members>
+        <members>PKR_Approval__c</members>
+        <members>PKR_Approver_Definition__mdt</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -29,6 +31,18 @@
         <members>Part_Code_Request__c.Sent_to_Sandbox_Date__c</members>
         <members>Part_Code_Request__c.Deployed_to_Production_Date__c</members>
         <members>Part_Code_Request__c.Sandbox_Sync_Error__c</members>
+        <members>PKR_Approval__c.Part_Code_Request__c</members>
+        <members>PKR_Approval__c.Sector__c</members>
+        <members>PKR_Approval__c.Approver__c</members>
+        <members>PKR_Approval__c.Status__c</members>
+        <members>PKR_Approval__c.Decision_By__c</members>
+        <members>PKR_Approval__c.Decision_Date__c</members>
+        <members>PKR_Approval__c.Comments__c</members>
+        <members>PKR_Approval__c.Round__c</members>
+        <members>PKR_Approval__c.Previous_Decisions__c</members>
+        <members>PKR_Approver_Definition__mdt.Approver_Username__c</members>
+        <members>PKR_Approver_Definition__mdt.Active__c</members>
+        <members>PKR_Approver_Definition__mdt.Order__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -36,12 +50,14 @@
         <members>Part_Code_Request__c.Deploy_to_Production</members>
         <members>Part_Code_Request__c.Send_to_Sandbox</members>
         <members>Part_Code_Request__c.Load_Sandbox_Build</members>
+        <members>Part_Code_Request__c.Resend_Approvals</members>
         <name>QuickAction</name>
     </types>
     <types>
         <members>Part_Code_Request__c-Part Code Request Layout</members>
         <members>Part_Code__c-Part Code Layout</members>
         <members>Global-Global Layout</members>
+        <members>PKR_Approval__c-Approval Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -58,6 +74,12 @@
         <members>PKR_Multipricebook_STANDARD_entries_creation</members>
         <members>PKR_Multipricebook_entries_creation</members>
         <members>PKR_Send_To_Sandbox</members>
+        <members>PKR_Notify_Approver</members>
+        <members>PKR_Create_Approvals</members>
+        <members>PKR_Approval_Stamp_Decision</members>
+        <members>PKR_Approval_Gate</members>
+        <members>PKR_Resend_Approvals</members>
+        <members>PKR_Resend_Rejected_Approvals</members>
         <name>Flow</name>
     </types>
     <types>
@@ -71,12 +93,27 @@
         <name>CustomPermission</name>
     </types>
     <types>
+        <members>PKR_Approver_Definition.Product_Strategy</members>
+        <members>PKR_Approver_Definition.Finance</members>
+        <members>PKR_Approver_Definition.Sales</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>PKR_Notifications</members>
+        <name>CustomNotificationType</name>
+    </types>
+    <types>
+        <members>PKR_Approval__c.Only_Approver_Can_Decide</members>
+        <name>ValidationRule</name>
+    </types>
+    <types>
         <members>Part_Code_Request__c</members>
         <name>CustomTab</name>
     </types>
     <types>
         <members>Part_Code_Requests</members>
         <members>PKR_Admin</members>
+        <members>PKR_Approver</members>
         <name>PermissionSet</name>
     </types>
     <version>62.0</version>

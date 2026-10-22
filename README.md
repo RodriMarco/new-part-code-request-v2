@@ -19,6 +19,13 @@ fully declarative screen flow (no custom code) to request one or more Part Codes
 | `Send to Sandbox` action | `PKR_Send_To_Sandbox` flow calls `PKRSandboxBridge` (Apex): copies the approved request and its Part Codes to the sandbox through the `PCR_Sandbox` named credential (composite tree REST call). In the sandbox, the record-triggered flow `PKR_Build_Replicated_Part_Code` builds every Part Code that arrives with a `Prod Part Code Id`. |
 | `Load Sandbox Build` action | `PKR_Load_Sandbox_Build` flow calls `PKRSandboxBuildLoader` (Apex): queries the sandbox for the products built for the request (`Product2.Source_PCR_Id__c` = production Part Code Id) and writes their Id and URL into each Part Code. |
 | `Deploy to Production` action | `PKR_Deploy_To_Production` flow: for every Part Code of the approved request, runs `PKR_Build_Part_Code` in the current org and shows a summary (created / skipped / errors). |
+| `PKR_Approval__c` object | Child of Part Code Request ("Approvals" related list). Fields: Sector, Approver (User), Status (Pending / Approved / Rejected), Decision By, Decision Date, Comments, Round, Previous Decisions. Validation rule: only the assigned approver (or a PKR admin) can approve or reject. |
+| `PKR_Approver_Definition__mdt` custom metadata | Who approves. One active record per sector with the approver's production username (matched with "starts with", so it also resolves sandbox usernames). Seeded with Product Strategy, Finance and Sales; edit the usernames in Setup > Custom Metadata Types. |
+| `PKR_Create_Approvals` flow | Record-triggered on request creation (skips sandbox replicas): creates one Pending approval per active definition and sends a `PKR Notifications` bell notification to each approver. |
+| `PKR_Approval_Stamp_Decision` flow | Before-save on approvals: when Status becomes Approved or Rejected, fills Decision By and Decision Date; when it goes back to Pending, clears them. |
+| `PKR_Approval_Gate` flow | After-save on approvals: sets the request Approval Status to Rejected if any approval is rejected, Approved when none is pending, otherwise Pending. |
+| `Resend Approvals` action | `PKR_Resend_Approvals` flow (UI) over `PKR_Resend_Rejected_Approvals` (autolaunched): rejected approvals go back to Pending in a new round, the rejection is appended to Previous Decisions, the request returns to Pending and the approvers are notified again. |
+| `PKR_Approver` permission set | Approvers: read requests and part codes, edit Status and Comments on approvals. |
 | `PKR_Build_Part_Code` flow | Builds one Part Code: creates the active Product2 (USD, list pricing, Family, Product Category, Short Description, Long Description truncated to 5000 chars, `Source_PCR_Id__c` = Part Code Id), then the pricebook entries and CPQ costs. Idempotent: skips Part Codes that already have a Product and reuses a Product2 with the same source Id. Errors are stored on the Part Code (`Build Status` = Error, `Build Error`). |
 | `PKR_Multipricebook_STANDARD_entries_creation`, `PKR_Multipricebook_entries_creation`, `PKR_Cost_entries_creation` | Copies of the v1 `PCR_*` subflows, renamed so v1 can be deleted later. Standard Price Book entries per currency (from Price Americas, or Price EMEA when Americas is blank); "ChyronHego Price Book - USD" entry from Price Americas; "ChyronHego Price Book MULTI-CURRENCY" entries per currency from Price EMEA converted with the org rates; `SBQQ__Cost__c` per currency from Cost. Each pricing/cost input is skipped when blank, and DML failures are reported back through an `ErrorMessage` output. |
 
@@ -27,7 +34,8 @@ fully declarative screen flow (no custom code) to request one or more Part Codes
 ```bash
 sf project deploy start --source-dir force-app --target-org <alias>
 sf org assign permset --name Part_Code_Requests --target-org <alias>
-sf org assign permset --name PKR_Admin --target-org <alias>   # admins only
+sf org assign permset --name PKR_Admin --target-org <alias>      # admins only
+sf org assign permset --name PKR_Approver --target-org <alias> --on-behalf-of <approver>
 ```
 
 Deploy the same metadata to the sandbox that receives requests (bizops) so `PKR_Build_Replicated_Part_Code` and the
