@@ -142,8 +142,19 @@
                 <stringValue>Pending</stringValue>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <elementReference>Request_Title</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>summary_description__c</field>
+            <value>
+                <elementReference>Request_Summary_Description</elementReference>
+            </value>
+        </inputAssignments>
         <object>Part_Code_Request__c</object>
-        <storeOutputAutomatically>false</storeOutputAutomatically>
     </recordCreates>
     <recordCreates>
         <name>Create_Part_Codes</name>
@@ -178,13 +189,29 @@
                 <elementReference>NewRequestId</elementReference>
             </value>
         </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Part_Code_Request__c</object>
         <outputReference>NewRequest</outputReference>
         <queriedFields>Id</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>Approval_Status__c</queriedFields>
+        <queriedFields>Title__c</queriedFields>
     </recordLookups>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error</label>
+        <locationX>616</locationX>
+        <locationY>566</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_Text</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Something went wrong while creating your request.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Please contact your Salesforce administrator and share the following details:&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>Part_Codes_Screen</name>
         <label>New Part Code Request</label>
@@ -199,6 +226,26 @@
         <fields>
             <name>Welcome_Text</name>
             <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Welcome to the New Part Code Request process.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Fill in the details of each Part Code you need. Use &lt;strong&gt;Add&lt;/strong&gt; to request another Part Code and &lt;strong&gt;Remove&lt;/strong&gt; to discard one. When you are done, click &lt;strong&gt;Request&lt;/strong&gt; to submit.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Request_Title</name>
+            <dataType>String</dataType>
+            <fieldText>Title</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>&lt;p&gt;A short title for this request (up to 100 characters).&lt;/p&gt;</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Request_Summary_Description</name>
+            <fieldText>Summary Description</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <helpText>&lt;p&gt;Give context on what is being requested and why.&lt;/p&gt;</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Part_Codes_Heading</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Part Codes&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -286,23 +333,7 @@
         <allowPause>false</allowPause>
         <fields>
             <name>Request_Created_Text</name>
-            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Your Part Code Request has been submitted.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Request number: &lt;strong&gt;{!NewRequest.Name}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Approval Status: {!NewRequest.Approval_Status__c}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;/{!NewRequestId}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_self&quot;&gt;Open the Part Code Request&lt;/a&gt;&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <screens>
-        <name>Error_Screen</name>
-        <label>Error</label>
-        <locationX>616</locationX>
-        <locationY>566</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>Error_Text</name>
-            <fieldText>&lt;p&gt;&lt;strong&gt;Something went wrong while creating your request.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Please contact your Salesforce administrator and share the following details:&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Your Part Code Request has been submitted.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Request number: &lt;strong&gt;{!NewRequest.Name}&lt;/strong&gt; &#8211; {!NewRequest.Title__c}&lt;/p&gt;&lt;p&gt;Approval Status: {!NewRequest.Approval_Status__c}&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;/{!NewRequestId}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_self&quot;&gt;Open the Part Code Request&lt;/a&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
