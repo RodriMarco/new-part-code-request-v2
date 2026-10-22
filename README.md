@@ -26,6 +26,23 @@ sf org assign permset --name Part_Code_Requests --target-org <alias>
 Then add the **Product Code Requests** tab to the Lightning app of your choice (App Manager) and open it.
 The **New Part Code Request** button appears on the list view.
 
+## Relationship with PCR v1
+
+The rpmdev sandbox already contains the original implementation (PCR v1): a flat `Product_Code_Request__c`
+with 49 fields, 25 `PCR_*` flows, Apex and per-sector approvals. A read-only copy is kept in
+[`reference/pcr-v1`](reference/pcr-v1/README.md) for consultation; it is never deployed.
+
+v2 reuses the `Product_Code_Request__c` API name as the parent and adds the `Part_Code__c` child. Deploying
+v2 on top of v1 therefore *merges* into the existing object (it adds `Approval_Status__c`, the list button,
+the child object, and replaces the page layout and the record page). v1's record-triggered flows stay active
+and will fire on records created by the v2 flow until they are retired.
+
+Validate without saving:
+
+```bash
+sf project deploy start --source-dir force-app --target-org <alias> --dry-run --ignore-conflicts
+```
+
 ## Notes
 
 - Product Name and Product Code are required inside the repeater so empty Part Codes are never created.

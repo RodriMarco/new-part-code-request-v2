@@ -203,90 +203,74 @@
         </fields>
         <fields>
             <name>Part_Code_Repeater</name>
-            <fieldType>RegionContainer</fieldType>
+            <fieldType>Repeater</fieldType>
             <fields>
-                <name>Part_Code_Repeater_Column1</name>
-                <fieldType>Region</fieldType>
-                <fields>
-                    <name>Product_Name</name>
-                    <dataType>String</dataType>
-                    <fieldText>Product Name</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>true</isRequired>
-                </fields>
-                <fields>
-                    <name>Product_Code</name>
-                    <dataType>String</dataType>
-                    <fieldText>Product Code</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>true</isRequired>
-                </fields>
-                <fields>
-                    <name>Product_Family</name>
-                    <dataType>String</dataType>
-                    <fieldText>Product Family</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Product_Category</name>
-                    <dataType>String</dataType>
-                    <fieldText>Product Category</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Short_Description</name>
-                    <dataType>String</dataType>
-                    <fieldText>Short Description</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <helpText>&lt;p&gt;Up to 255 characters.&lt;/p&gt;</helpText>
-                    <isRequired>false</isRequired>
-                    <validationRule>
-                        <errorMessage>&lt;p&gt;Short Description can have at most 255 characters.&lt;/p&gt;</errorMessage>
-                        <formulaExpression>LEN({!Short_Description}) &lt;= 255</formulaExpression>
-                    </validationRule>
-                </fields>
-                <fields>
-                    <name>Long_Description</name>
-                    <fieldText>Long Description</fieldText>
-                    <fieldType>LargeTextArea</fieldType>
-                    <isRequired>false</isRequired>
-                </fields>
-                <fields>
-                    <name>Price_Americas</name>
-                    <dataType>Currency</dataType>
-                    <fieldText>Price (Americas)</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                    <scale>2</scale>
-                </fields>
-                <fields>
-                    <name>Price_EMEA</name>
-                    <dataType>Currency</dataType>
-                    <fieldText>Price (EMEA)</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                    <scale>2</scale>
-                </fields>
-                <fields>
-                    <name>Cost</name>
-                    <dataType>Currency</dataType>
-                    <fieldText>Cost</fieldText>
-                    <fieldType>InputField</fieldType>
-                    <isRequired>false</isRequired>
-                    <scale>2</scale>
-                </fields>
-                <inputParameters>
-                    <name>width</name>
-                    <value>
-                        <stringValue>12</stringValue>
-                    </value>
-                </inputParameters>
+                <name>Product_Name</name>
+                <dataType>String</dataType>
+                <fieldText>Product Name</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>true</isRequired>
+            </fields>
+            <fields>
+                <name>Product_Code</name>
+                <dataType>String</dataType>
+                <fieldText>Product Code</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>true</isRequired>
+            </fields>
+            <fields>
+                <name>Product_Family</name>
+                <dataType>String</dataType>
+                <fieldText>Product Family</fieldText>
+                <fieldType>InputField</fieldType>
                 <isRequired>false</isRequired>
             </fields>
+            <fields>
+                <name>Product_Category</name>
+                <dataType>String</dataType>
+                <fieldText>Product Category</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Short_Description</name>
+                <dataType>String</dataType>
+                <fieldText>Short Description</fieldText>
+                <fieldType>InputField</fieldType>
+                <helpText>&lt;p&gt;Up to 255 characters.&lt;/p&gt;</helpText>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Long_Description</name>
+                <fieldText>Long Description</fieldText>
+                <fieldType>LargeTextArea</fieldType>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Price_Americas</name>
+                <dataType>Currency</dataType>
+                <fieldText>Price (Americas)</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>false</isRequired>
+                <scale>2</scale>
+            </fields>
+            <fields>
+                <name>Price_EMEA</name>
+                <dataType>Currency</dataType>
+                <fieldText>Price (EMEA)</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>false</isRequired>
+                <scale>2</scale>
+            </fields>
+            <fields>
+                <name>Cost</name>
+                <dataType>Currency</dataType>
+                <fieldText>Cost</fieldText>
+                <fieldType>InputField</fieldType>
+                <isRequired>false</isRequired>
+                <scale>2</scale>
+            </fields>
             <isRequired>false</isRequired>
-            <regionContainerType>Repeater</regionContainerType>
         </fields>
         <nextOrFinishButtonLabel>Request</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>

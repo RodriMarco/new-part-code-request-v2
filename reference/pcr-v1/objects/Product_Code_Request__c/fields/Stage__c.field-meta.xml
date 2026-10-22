@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage__c</fullName>
+    <description>Master state machine driver. All UI visibility and Flow logic keys off this field.</description>
+    <label>Stage</label>
+    <required>true</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <default>true</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Sandbox Approval</fullName>
+                <default>false</default>
+                <label>Sandbox Approval</label>
+            </value>
+            <value>
+                <fullName>Revisions Needed</fullName>
+                <default>false</default>
+                <label>Revisions Needed</label>
+            </value>
+            <value>
+                <fullName>Sandbox Load Pending</fullName>
+                <default>false</default>
+                <label>Sandbox Load Pending</label>
+            </value>
+            <value>
+                <fullName>Testing</fullName>
+                <default>false</default>
+                <label>Testing</label>
+            </value>
+            <value>
+                <fullName>Production Approval</fullName>
+                <default>false</default>
+                <label>Production Approval</label>
+            </value>
+            <value>
+                <fullName>Production Migration Pending</fullName>
+                <default>false</default>
+                <label>Production Migration Pending</label>
+            </value>
+            <value>
+                <fullName>Live</fullName>
+                <default>false</default>
+                <label>Live</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

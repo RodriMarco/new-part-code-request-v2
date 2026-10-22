@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approver_Group__c</fullName>
+    <description>DeveloperName of the Public Group (Type=Regular) that owns approvals for this sector/round. Copied onto each generated PCR_Sector__c.Approver_Group__c and used by the notify flow to resolve the notification recipient Group Id.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Approver Group</label>
+    <length>80</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

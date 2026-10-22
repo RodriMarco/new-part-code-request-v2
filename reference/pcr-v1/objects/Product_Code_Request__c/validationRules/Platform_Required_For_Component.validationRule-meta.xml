@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Platform_Required_For_Component</fullName>
+    <active>false</active>
+    <description>Component-category PCRs must reference a parent Platform.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Category__c, &quot;Component&quot;),
+    ISBLANK(Platform__c)
+)</errorConditionFormula>
+    <errorDisplayField>Platform__c</errorDisplayField>
+    <errorMessage>Platform is required when Category is Component.</errorMessage>
+</ValidationRule>

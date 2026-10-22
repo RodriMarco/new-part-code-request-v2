@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Same_Pricing_All_Regions__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If true, Price_EMEA__c is forced equal to Price_Americas__c by the PCR_Pricing_Sync Flow.</description>
+    <label>Same Pricing All Regions</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

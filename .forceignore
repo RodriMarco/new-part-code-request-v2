@@ -2,3 +2,5 @@ package.xml
 **/jsconfig.json
 **/.eslintrc.json
 **/__tests__/**
+# Reference copy of the v1 PCR implementation; never deploy it
+reference/**

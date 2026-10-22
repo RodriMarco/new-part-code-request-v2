@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Access needed to submit a PCR to sbaa Advanced Approvals: create/read/edit on sbaa__Approval__c and read/edit FLS on the Product Code Request lookup. Assign to anyone who can submit a PCR (and to approvers).</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>sbaa__Approval__c.Product_Code_Request__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>PCR Approval Access</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>sbaa__Approval__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+</PermissionSet>

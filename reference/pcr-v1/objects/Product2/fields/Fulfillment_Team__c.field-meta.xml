@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fulfillment_Team__c</fullName>
+    <description>Team responsible for the end-to-end management of the product delivery and fulfillment process, ensuring that all items/licenses/services are accurately processed, packed, and dispatched or provided  according to product codes and customer requirements.</description>
+    <label>Fulfillment Team</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Axis</fullName>
+                <default>false</default>
+                <label>Axis</label>
+            </value>
+            <value>
+                <fullName>Chyron Live</fullName>
+                <default>false</default>
+                <label>Chyron Live</label>
+            </value>
+            <value>
+                <fullName>Commissioning</fullName>
+                <default>false</default>
+                <label>Commissioning</label>
+            </value>
+            <value>
+                <fullName>Hego</fullName>
+                <default>false</default>
+                <label>Hego</label>
+            </value>
+            <value>
+                <fullName>Licensing</fullName>
+                <default>false</default>
+                <label>Licensing</label>
+            </value>
+            <value>
+                <fullName>Manufacturing</fullName>
+                <default>false</default>
+                <label>Manufacturing</label>
+            </value>
+            <value>
+                <fullName>Newsticker</fullName>
+                <default>false</default>
+                <label>Newsticker</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Platform</fullName>
+                <default>false</default>
+                <label>Platform</label>
+            </value>
+            <value>
+                <fullName>Support</fullName>
+                <default>false</default>
+                <label>Support</label>
+            </value>
+            <value>
+                <fullName>Tracab</fullName>
+                <default>false</default>
+                <label>Tracab</label>
+            </value>
+            <value>
+                <fullName>Weather</fullName>
+                <default>false</default>
+                <label>Weather</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

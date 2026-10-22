@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submit_For_Approval</fullName>
+    <availability>online</availability>
+    <description>Submits the Product Code Request to sbaa Advanced Approvals for the current Stage.</description>
+    <displayType>button</displayType>
+    <linkType>page</linkType>
+    <masterLabel>Submit for Approval</masterLabel>
+    <openType>replace</openType>
+    <page>PCR_Submit</page>
+    <protected>false</protected>
+</WebLink>

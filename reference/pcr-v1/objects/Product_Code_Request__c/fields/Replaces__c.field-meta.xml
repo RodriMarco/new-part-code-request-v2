@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Replaces__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Existing product being superseded by this request. No active-only filter — both active and discontinued Product2 records are selectable.</description>
+    <label>Replaces</label>
+    <referenceTo>Product2</referenceTo>
+    <relationshipLabel>Product Code Requests (Replaces)</relationshipLabel>
+    <relationshipName>Replaced_By_PCRs</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

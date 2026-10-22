@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Required_Before_Submit</fullName>
+    <active>false</active>
+    <description>DEACTIVATED for PCR v2: pricing is provided by Sales/Finance during R1 and enforced by the per-sector done-check, so requiring it before Sandbox Approval contradicts the v2 flow.</description>
+    <errorConditionFormula>AND(
+    NOT(ISPICKVAL(Stage__c, &quot;Draft&quot;)),
+    NOT(ISPICKVAL(Stage__c, &quot;Cancelled&quot;)),
+    OR(
+        ISBLANK(Price_Americas__c),
+        AND(
+            NOT(Same_Pricing_All_Regions__c),
+            ISBLANK(Price_EMEA__c)
+        )
+    )
+)</errorConditionFormula>
+    <errorMessage>Price (Americas) and Price (EMEA) (if not &quot;Same Pricing All Regions&quot;) must be filled before submitting for approval.</errorMessage>
+</ValidationRule>

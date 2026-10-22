@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HW_SW_Required_For_Product</fullName>
+    <active>false</active>
+    <description>Type=Product must specify HW or SW.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Type__c, &quot;Product&quot;),
+    ISBLANK(TEXT(Hardware_Software__c))
+)</errorConditionFormula>
+    <errorDisplayField>Hardware_Software__c</errorDisplayField>
+    <errorMessage>Hardware / Software is required when Type is Product.</errorMessage>
+</ValidationRule>

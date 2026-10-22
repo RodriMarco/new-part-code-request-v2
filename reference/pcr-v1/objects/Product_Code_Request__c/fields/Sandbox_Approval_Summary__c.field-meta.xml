@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sandbox_Approval_Summary__c</fullName>
+    <description>Human-readable summary, e.g. &quot;6 of 9 Approved&quot;.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Sandbox_Approved_Count__c) &amp; &quot; of &quot; &amp;
+TEXT(Sandbox_Approved_Count__c + Sandbox_Pending_Count__c + Sandbox_Rejected_Count__c) &amp;
+&quot; Approved · &quot; &amp; TEXT(Sandbox_Pending_Count__c) &amp; &quot; Pending · &quot; &amp;
+TEXT(Sandbox_Rejected_Count__c) &amp; &quot; Rejected&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sandbox Approval Summary</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

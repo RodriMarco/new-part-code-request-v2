@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Double_Migrate</fullName>
+    <active>true</active>
+    <description>Blocks re-triggering production build when Production_Product2_Id__c is already populated.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Production_Build_Triggered__c),
+    Production_Build_Triggered__c,
+    NOT(ISBLANK(Production_Product2_Id__c))
+)</errorConditionFormula>
+    <errorDisplayField>Production_Build_Triggered__c</errorDisplayField>
+    <errorMessage>Migration already completed for this PCR.</errorMessage>
+</ValidationRule>

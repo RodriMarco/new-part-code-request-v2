@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approver__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>User who made the sign-off decision (Approved / Changes Requested) for this sector.</description>
+    <label>Approver</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>PCR Sector Decisions</relationshipLabel>
+    <relationshipName>PCR_Sector_Decisions</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

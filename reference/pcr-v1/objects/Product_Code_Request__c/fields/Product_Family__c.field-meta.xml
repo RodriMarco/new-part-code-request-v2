@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Family__c</fullName>
+    <label>Product Family</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AXIS</fullName>
+                <default>false</default>
+                <label>AXIS</label>
+            </value>
+            <value>
+                <fullName>CAMIO</fullName>
+                <default>false</default>
+                <label>CAMIO</label>
+            </value>
+            <value>
+                <fullName>ChannelBox</fullName>
+                <default>false</default>
+                <label>ChannelBox</label>
+            </value>
+            <value>
+                <fullName>Click Effects</fullName>
+                <default>false</default>
+                <label>Click Effects</label>
+            </value>
+            <value>
+                <fullName>Coach Capture</fullName>
+                <default>false</default>
+                <label>Coach Capture</label>
+            </value>
+            <value>
+                <fullName>Coach Paint</fullName>
+                <default>false</default>
+                <label>Coach Paint</label>
+            </value>
+            <value>
+                <fullName>CSG Design</fullName>
+                <default>false</default>
+                <label>CSG Design</label>
+            </value>
+            <value>
+                <fullName>Data Hub</fullName>
+                <default>false</default>
+                <label>Data Hub</label>
+            </value>
+            <value>
+                <fullName>DTN</fullName>
+                <default>false</default>
+                <label>DTN</label>
+            </value>
+            <value>
+                <fullName>Engage</fullName>
+                <default>false</default>
+                <label>Engage</label>
+            </value>
+            <value>
+                <fullName>Fresh</fullName>
+                <default>false</default>
+                <label>Fresh</label>
+            </value>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Hego</fullName>
+                <default>false</default>
+                <label>Hego</label>
+            </value>
+            <value>
+                <fullName>HeliPaint</fullName>
+                <default>false</default>
+                <label>HeliPaint</label>
+            </value>
+            <value>
+                <fullName>HubDrive</fullName>
+                <default>false</default>
+                <label>HubDrive</label>
+            </value>
+            <value>
+                <fullName>HyperX</fullName>
+                <default>false</default>
+                <label>HyperX</label>
+            </value>
+            <value>
+                <fullName>ISA</fullName>
+                <default>false</default>
+                <label>ISA</label>
+            </value>
+            <value>
+                <fullName>ISQ</fullName>
+                <default>false</default>
+                <label>ISQ</label>
+            </value>
+            <value>
+                <fullName>LAP</fullName>
+                <default>false</default>
+                <label>LAP</label>
+            </value>
+            <value>
+                <fullName>LIVE</fullName>
+                <default>false</default>
+                <label>LIVE</label>
+            </value>
+            <value>
+                <fullName>Live Production / Hybrid</fullName>
+                <default>false</default>
+                <label>Live Production / Hybrid</label>
+            </value>
+            <value>
+                <fullName>Live Production / Vidigo</fullName>
+                <default>false</default>
+                <label>Live Production / Vidigo</label>
+            </value>
+            <value>
+                <fullName>Lyric</fullName>
+                <default>false</default>
+                <label>Lyric</label>
+            </value>
+            <value>
+                <fullName>LyricX</fullName>
+                <default>false</default>
+                <label>LyricX</label>
+            </value>
+            <value>
+                <fullName>Maintenance</fullName>
+                <default>false</default>
+                <label>Maintenance</label>
+            </value>
+            <value>
+                <fullName>Metacast</fullName>
+                <default>false</default>
+                <label>Metacast</label>
+            </value>
+            <value>
+                <fullName>MLB</fullName>
+                <default>false</default>
+                <label>MLB</label>
+            </value>
+            <value>
+                <fullName>NewsTicker</fullName>
+                <default>false</default>
+                <label>NewsTicker</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>PAINT</fullName>
+                <default>false</default>
+                <label>PAINT</label>
+            </value>
+            <value>
+                <fullName>POC</fullName>
+                <default>false</default>
+                <label>POC</label>
+            </value>
+            <value>
+                <fullName>PRIME</fullName>
+                <default>false</default>
+                <label>PRIME</label>
+            </value>
+            <value>
+                <fullName>PRIME VSAR</fullName>
+                <default>false</default>
+                <label>PRIME VSAR</label>
+            </value>
+            <value>
+                <fullName>ProAudio</fullName>
+                <default>false</default>
+                <label>ProAudio</label>
+            </value>
+            <value>
+                <fullName>Pro Services</fullName>
+                <default>false</default>
+                <label>Pro Services</label>
+            </value>
+            <value>
+                <fullName>Rental</fullName>
+                <default>false</default>
+                <label>Rental</label>
+            </value>
+            <value>
+                <fullName>Service &amp; Support</fullName>
+                <default>false</default>
+                <label>Service &amp; Support</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>SHOUT</fullName>
+                <default>false</default>
+                <label>SHOUT</label>
+            </value>
+            <value>
+                <fullName>Sports FX</fullName>
+                <default>false</default>
+                <label>Sports FX</label>
+            </value>
+            <value>
+                <fullName>Sportsground</fullName>
+                <default>false</default>
+                <label>Sportsground</label>
+            </value>
+            <value>
+                <fullName>Toolbox</fullName>
+                <default>false</default>
+                <label>Toolbox</label>
+            </value>
+            <value>
+                <fullName>Touch</fullName>
+                <default>false</default>
+                <label>Touch</label>
+            </value>
+            <value>
+                <fullName>TRACAB</fullName>
+                <default>false</default>
+                <label>TRACAB</label>
+            </value>
+            <value>
+                <fullName>Vidigo</fullName>
+                <default>false</default>
+                <label>Vidigo</label>
+            </value>
+            <value>
+                <fullName>Virtual Placement</fullName>
+                <default>false</default>
+                <label>Virtual Placement</label>
+            </value>
+            <value>
+                <fullName>VistaCam</fullName>
+                <default>false</default>
+                <label>VistaCam</label>
+            </value>
+            <value>
+                <fullName>VP</fullName>
+                <default>false</default>
+                <label>VP</label>
+            </value>
+            <value>
+                <fullName>Weather</fullName>
+                <default>false</default>
+                <label>Weather</label>
+            </value>
+            <value>
+                <fullName>ZXY</fullName>
+                <default>false</default>
+                <label>ZXY</label>
+            </value>
+            <value>
+                <fullName>DATA VAULT</fullName>
+                <default>false</default>
+                <label>DATA VAULT</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

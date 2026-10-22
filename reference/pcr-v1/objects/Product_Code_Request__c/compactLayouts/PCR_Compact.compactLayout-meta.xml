@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PCR_Compact</fullName>
+    <fields>Name</fields>
+    <fields>Product_Name__c</fields>
+    <fields>Stage__c</fields>
+    <fields>Type__c</fields>
+    <fields>Hardware_Software__c</fields>
+    <fields>Requester__c</fields>
+    <label>PCR Compact</label>
+</CompactLayout>

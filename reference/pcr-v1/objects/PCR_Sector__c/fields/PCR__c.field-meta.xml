@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PCR__c</fullName>
+    <description>Parent Product Code Request this sector approval/data child belongs to.</description>
+    <label>PCR</label>
+    <referenceTo>Product_Code_Request__c</referenceTo>
+    <relationshipLabel>PCR Sectors</relationshipLabel>
+    <relationshipName>Sectors</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

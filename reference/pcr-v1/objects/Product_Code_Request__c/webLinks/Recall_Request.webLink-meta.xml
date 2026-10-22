@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recall_Request</fullName>
+    <availability>online</availability>
+    <description>Recalls the in-flight sbaa approval round for this Product Code Request.</description>
+    <displayType>button</displayType>
+    <linkType>page</linkType>
+    <masterLabel>Recall</masterLabel>
+    <openType>replace</openType>
+    <page>PCR_Recall</page>
+    <protected>false</protected>
+</WebLink>

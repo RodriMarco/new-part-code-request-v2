@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Slack_Channel_Id__c</fullName>
+    <description>Slack channel ID for this PCR&apos;s record channel. Written by the provisioning Slack workflow at Sandbox Approval; read by the PCR_Slack_* posting flows to target the channel.</description>
+    <externalId>false</externalId>
+    <label>Slack Channel Id</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
