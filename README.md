@@ -28,14 +28,15 @@ The **New Part Code Request** action appears in the global "+" menu of the Light
 
 ## Relationship with PCR v1
 
-The rpmdev sandbox already contains the original implementation (PCR v1): a flat `Part_Code_Request__c`
+The rpmdev sandbox already contains the original implementation (PCR v1): a flat `Product_Code_Request__c`
 with 49 fields, 25 `PCR_*` flows, Apex and per-sector approvals. A read-only copy is kept in
 [`reference/pcr-v1`](reference/pcr-v1/README.md) for consultation; it is never deployed.
 
-v2 reuses the `Part_Code_Request__c` API name as the parent and adds the `Part_Code__c` child. Deploying
-v2 on top of v1 therefore *merges* into the existing object (it adds `Approval_Status__c`, the list button,
-the child object, and replaces the page layout and the record page). v1's record-triggered flows stay active
-and will fire on records created by the v2 flow until they are retired.
+v2 is deployed as a **separate** object, `Part_Code_Request__c` ("Part Code Request", `PKR-` auto-number), with
+its own child `Part_Code__c`, so it coexists with v1 without touching it. Once v2 is accepted, v1 can be retired
+(objects, flows, Apex, groups and custom metadata listed in the reference README). Some v1 flows, such as
+`PCR_Create_Product` and `PCR_Autolaunch_Product_Creation`, may be adapted to create the Product2 records from
+Part Codes.
 
 Validate without saving:
 
