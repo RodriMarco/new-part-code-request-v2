@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Approver_Username__c</field>
-        <value xsi:type="xsd:string">CONSTANZA_COMPETIELLO_USERNAME</value>
+        <value xsi:type="xsd:string">constanza.competiello@chyronhego.com</value>
     </values>
     <values>
         <field>Order__c</field>

@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>Approver_Username__c</field>
-        <value xsi:type="xsd:string">JULIEN_MANCHOULAS_USERNAME</value>
+        <value xsi:type="xsd:string">julien.manchoulas@chyron.com</value>
     </values>
     <values>
         <field>Order__c</field>
