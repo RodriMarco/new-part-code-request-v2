@@ -52,6 +52,7 @@
         <members>Part_Code_Request__c.Send_to_Sandbox</members>
         <members>Part_Code_Request__c.Load_Sandbox_Build</members>
         <members>Part_Code_Request__c.Resend_Approvals</members>
+        <members>Part_Code_Request__c.Approve_All</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -83,6 +84,8 @@
         <members>PKR_Resend_Rejected_Approvals</members>
         <members>PKR_Approval_Notify_On_Assign</members>
         <members>PKR_Approval_Notify_On_Reopen</members>
+        <members>PKR_Approve_All</members>
+        <members>PKR_Approve_All_Approvals</members>
         <name>Flow</name>
     </types>
     <types>

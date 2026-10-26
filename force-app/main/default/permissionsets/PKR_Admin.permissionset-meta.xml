@@ -177,6 +177,10 @@
     </flowAccesses>
     <flowAccesses>
         <enabled>true</enabled>
+        <flow>PKR_Approve_All</flow>
+    </flowAccesses>
+    <flowAccesses>
+        <enabled>true</enabled>
         <flow>PKR_Deploy_To_Production</flow>
     </flowAccesses>
     <flowAccesses>

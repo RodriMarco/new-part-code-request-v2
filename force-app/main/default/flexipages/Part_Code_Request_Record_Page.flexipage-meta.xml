@@ -10,6 +10,16 @@
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>
+                            <value>Part_Code_Request__c.Approve_All</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!$Permission.CustomPermission.PKR_Deploy_Products}</leftValue>
+                                    <operator>EQUAL</operator>
+                                    <rightValue>true</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Part_Code_Request__c.Resend_Approvals</value>
                         </valueListItems>
                         <valueListItems>
