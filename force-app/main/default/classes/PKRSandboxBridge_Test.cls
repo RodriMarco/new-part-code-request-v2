@@ -35,8 +35,9 @@ private class PKRSandboxBridge_Test {
         System.assertEquals(1, results.size());
         System.assertEquals(true, results[0].success, results[0].message);
         System.assertEquals('a2xSANDBOX000001AAA', results[0].sandboxRequestId);
-        req = [SELECT Sent_to_Sandbox_Date__c, Sandbox_Sync_Error__c FROM Part_Code_Request__c WHERE Id = :req.Id];
+        req = [SELECT Sent_to_Sandbox_Date__c, Sandbox_Sync_Error__c, Stage__c FROM Part_Code_Request__c WHERE Id = :req.Id];
         System.assertNotEquals(null, req.Sent_to_Sandbox_Date__c);
+        System.assertEquals('In Sandbox', req.Stage__c);
         System.assertEquals(null, req.Sandbox_Sync_Error__c);
     }
 

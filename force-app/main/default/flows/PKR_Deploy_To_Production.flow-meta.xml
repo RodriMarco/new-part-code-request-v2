@@ -339,6 +339,12 @@
                 <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </inputAssignments>
+        <inputAssignments>
+            <field>Stage__c</field>
+            <value>
+                <stringValue>In Production</stringValue>
+            </value>
+        </inputAssignments>
         <object>Part_Code_Request__c</object>
     </recordUpdates>
     <screens>

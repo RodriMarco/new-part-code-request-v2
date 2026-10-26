@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>When an approval goes back to Pending (Resend Approvals or a single approval re-sent by hand) and has an approver, notifies that approver again.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>NotificationBody</name>
+        <dataType>String</dataType>
+        <expression>&quot;Request &quot; &amp; {!$Record.Part_Code_Request__r.Name} &amp; &quot; (&quot; &amp; {!$Record.Part_Code_Request__r.Title__c} &amp; &quot;) was sent again for your approval (&quot; &amp; {!$Record.Sector__c} &amp; &quot;, round &quot; &amp; TEXT({!$Record.Round__c}) &amp; &quot;).&quot;</expression>
+    </formulas>
+    <interviewLabel>PKR Approval Notify On Reopen {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PKR Approval Notify On Reopen</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Notify_Approver</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Approver__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>PKR_Approval__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <subflows>
+        <name>Notify_Approver</name>
+        <label>Notify Approver</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>PKR_Notify_Approver</flowName>
+        <inputAssignments>
+            <name>ApproverId</name>
+            <value>
+                <elementReference>$Record.Approver__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>NotificationBody</name>
+            <value>
+                <elementReference>NotificationBody</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>NotificationTitle</name>
+            <value>
+                <stringValue>Part Code Request resent for approval</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>TargetId</name>
+            <value>
+                <elementReference>$Record.Part_Code_Request__c</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+</Flow>

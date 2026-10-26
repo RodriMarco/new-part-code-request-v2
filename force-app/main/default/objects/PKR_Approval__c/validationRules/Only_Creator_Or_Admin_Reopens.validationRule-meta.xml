@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Creator_Or_Admin_Reopens</fullName>
+    <active>true</active>
+    <description>Only the request creator, a System Administrator, a PKR admin or a user with PKR Approve Any can send a decided approval back to Pending.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Status__c),
+    ISPICKVAL(Status__c, &quot;Pending&quot;),
+    $User.Id &lt;&gt; Part_Code_Request__r.CreatedById,
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+    NOT($Permission.PKR_Deploy_Products),
+    NOT($Permission.PKR_Approve_Any)
+)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>Only the user who created the request or an administrator can send this approval back for approval.</errorMessage>
+</ValidationRule>

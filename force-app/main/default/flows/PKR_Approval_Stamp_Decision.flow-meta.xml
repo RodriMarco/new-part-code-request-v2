@@ -2,6 +2,36 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
     <assignments>
+        <name>Reopen_With_History</name>
+        <label>Reopen With History</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Previous_Decisions__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>HistoryLine</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Previous_Decisions__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>NewLine</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Round__c</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clear_Decision</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Clear_Decision</name>
         <label>Clear Decision</label>
         <locationX>0</locationX>
@@ -12,6 +42,10 @@
         </assignmentItems>
         <assignmentItems>
             <assignToReference>$Record.Decision_Date__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Comments__c</assignToReference>
             <operator>Assign</operator>
         </assignmentItems>
     </assignments>
@@ -36,6 +70,31 @@
         </assignmentItems>
     </assignments>
     <decisions>
+        <name>Had_Decision</name>
+        <label>Had a Decision?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Decision</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No decision recorded</defaultConnectorLabel>
+        <rules>
+            <name>Decided</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Decision_By__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Prior_Decider</targetReference>
+            </connector>
+            <label>Decided</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Status</name>
         <label>Which Status?</label>
         <locationX>0</locationX>
@@ -55,13 +114,18 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Clear_Decision</targetReference>
+                <targetReference>Had_Decision</targetReference>
             </connector>
             <label>Back to Pending</label>
         </rules>
     </decisions>
-    <description>When the Status of an Approval changes to Approved or Rejected, records who decided and when. When it goes back to Pending (resend), clears them.</description>
+    <description>When the Status of an Approval changes to Approved or Rejected, records who decided and when. When it goes back to Pending (resend or manual re-approval of a single approval), appends the previous decision to Previous Decisions, starts a new round and clears the decision fields and comments.</description>
     <environments>Default</environments>
+    <formulas>
+        <name>HistoryLine</name>
+        <dataType>String</dataType>
+        <expression>&quot;Round &quot; &amp; TEXT({!$Record__Prior.Round__c}) &amp; &quot;: &quot; &amp; TEXT({!$Record__Prior.Status__c}) &amp; &quot; by &quot; &amp; {!Get_Prior_Decider.Name} &amp; &quot; on &quot; &amp; TEXT({!$Record__Prior.Decision_Date__c}) &amp; IF(ISBLANK({!$Record__Prior.Comments__c}), &quot;&quot;, &quot; - &quot; &amp; {!$Record__Prior.Comments__c})</expression>
+    </formulas>
     <interviewLabel>PKR Approval Stamp Decision {!$Flow.CurrentDateTime}</interviewLabel>
     <label>PKR Approval Stamp Decision</label>
     <processMetadataValues>
@@ -83,6 +147,27 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Prior_Decider</name>
+        <label>Get Prior Decider</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Reopen_With_History</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record__Prior.Decision_By__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
@@ -102,4 +187,10 @@
         <triggerType>RecordBeforeSave</triggerType>
     </start>
     <status>Active</status>
+    <textTemplates>
+        <name>NewLine</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>
+</text>
+    </textTemplates>
 </Flow>

@@ -31,6 +31,7 @@
         <members>Part_Code_Request__c.Sent_to_Sandbox_Date__c</members>
         <members>Part_Code_Request__c.Deployed_to_Production_Date__c</members>
         <members>Part_Code_Request__c.Sandbox_Sync_Error__c</members>
+        <members>Part_Code_Request__c.Stage__c</members>
         <members>PKR_Approval__c.Part_Code_Request__c</members>
         <members>PKR_Approval__c.Sector__c</members>
         <members>PKR_Approval__c.Approver__c</members>
@@ -81,6 +82,7 @@
         <members>PKR_Resend_Approvals</members>
         <members>PKR_Resend_Rejected_Approvals</members>
         <members>PKR_Approval_Notify_On_Assign</members>
+        <members>PKR_Approval_Notify_On_Reopen</members>
         <name>Flow</name>
     </types>
     <types>
@@ -110,9 +112,18 @@
         <name>CustomNotificationType</name>
     </types>
     <types>
+        <members>Part_Code_Request_Path</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>PathAssistant</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>PKR_Approval__c.Only_Approver_Can_Decide</members>
         <members>PKR_Approval__c.Approver_Required_To_Decide</members>
         <members>PKR_Approval__c.Only_Creator_Or_Admin_Assigns</members>
+        <members>PKR_Approval__c.Only_Creator_Or_Admin_Reopens</members>
         <name>ValidationRule</name>
     </types>
     <types>

@@ -19,6 +19,11 @@
     <description>Admins of the Part Code Request process: can send requests to the sandbox and deploy products to production.</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Part_Code_Request__c.Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Part_Code__c.Build_Error__c</field>
         <readable>true</readable>
     </fieldPermissions>

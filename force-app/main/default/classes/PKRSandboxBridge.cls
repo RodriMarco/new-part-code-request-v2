@@ -45,7 +45,7 @@ public with sharing class PKRSandboxBridge {
                                 JSON.serialize(buildPayload(req)));
         if (res.getStatusCode() == 201) {
             String sandboxId = parseTreeResponse(res.getBody());
-            update new Part_Code_Request__c(Id = requestId, Sent_to_Sandbox_Date__c = System.now(), Sandbox_Sync_Error__c = null);
+            update new Part_Code_Request__c(Id = requestId, Sent_to_Sandbox_Date__c = System.now(), Sandbox_Sync_Error__c = null, Stage__c = 'In Sandbox');
             return sandboxId;
         }
         String err = 'Sandbox POST failed with status ' + res.getStatusCode() + ': ' + res.getBody();

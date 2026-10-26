@@ -7,36 +7,11 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <assignmentItems>
-            <assignToReference>Loop_Rejected.Previous_Decisions__c</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>HistoryLine</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Rejected.Previous_Decisions__c</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>NewLine</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
             <assignToReference>Loop_Rejected.Status__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>Pending</stringValue>
             </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Rejected.Round__c</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1</numberValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Rejected.Comments__c</assignToReference>
-            <operator>Assign</operator>
         </assignmentItems>
         <assignmentItems>
             <assignToReference>ApprovalsToUpdate</assignToReference>
@@ -56,31 +31,6 @@
             <targetReference>Loop_Rejected</targetReference>
         </connector>
     </assignments>
-    <decisions>
-        <name>Has_Approver</name>
-        <label>Has Approver?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Loop_Notify</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Unassigned</defaultConnectorLabel>
-        <rules>
-            <name>Assigned</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Notify.Approver__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Notify_Approver</targetReference>
-            </connector>
-            <label>Assigned</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>Has_Rejected</name>
         <label>Has Rejected Approvals?</label>
@@ -103,31 +53,10 @@
             <label>Some</label>
         </rules>
     </decisions>
-    <description>Core of Resend Approvals (autolaunched so it can be tested and reused): resets every Rejected approval of the request to Pending (new round), keeps the rejection in Previous Decisions, sets the request back to Pending and notifies the approvers again.</description>
+    <description>Core of Resend Approvals (autolaunched so it can be tested and reused): sets every Rejected approval of the request back to Pending. The approval triggers then start a new round, keep the history, notify the approvers and move the request back to Pending.</description>
     <environments>Default</environments>
-    <formulas>
-        <name>HistoryLine</name>
-        <dataType>String</dataType>
-        <expression>&quot;Round &quot; &amp; TEXT({!Loop_Rejected.Round__c}) &amp; &quot;: Rejected by &quot; &amp; {!Get_Decider.Name} &amp; &quot; on &quot; &amp; TEXT({!Loop_Rejected.Decision_Date__c}) &amp; IF(ISBLANK({!Loop_Rejected.Comments__c}), &quot;&quot;, &quot; - &quot; &amp; {!Loop_Rejected.Comments__c})</expression>
-    </formulas>
-    <formulas>
-        <name>NotificationBody</name>
-        <dataType>String</dataType>
-        <expression>&quot;Request &quot; &amp; {!Get_Request.Name} &amp; &quot; (&quot; &amp; {!Get_Request.Title__c} &amp; &quot;) was updated and resent for your approval (&quot; &amp; {!Loop_Notify.Sector__c} &amp; &quot;, round &quot; &amp; TEXT({!Loop_Notify.Round__c}) &amp; &quot;).&quot;</expression>
-    </formulas>
     <interviewLabel>PKR Resend Rejected Approvals {!$Flow.CurrentDateTime}</interviewLabel>
     <label>PKR Resend Rejected Approvals</label>
-    <loops>
-        <name>Loop_Notify</name>
-        <label>Loop Notify</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <collectionReference>ApprovalsToUpdate</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Has_Approver</targetReference>
-        </nextValueConnector>
-    </loops>
     <loops>
         <name>Loop_Rejected</name>
         <label>Loop Rejected</label>
@@ -136,7 +65,7 @@
         <collectionReference>Get_Rejected</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Get_Decider</targetReference>
+            <targetReference>Prepare_Resend</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Update_Approvals</targetReference>
@@ -161,27 +90,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordLookups>
-        <name>Get_Decider</name>
-        <label>Get Decider</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Prepare_Resend</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>Loop_Rejected.Decision_By__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>User</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordLookups>
         <name>Get_Rejected</name>
         <label>Get Rejected</label>
@@ -212,109 +120,21 @@
         <sortOrder>Asc</sortOrder>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>Get_Request</name>
-        <label>Get Request</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Rejected</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Part_Code_Request__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordUpdates>
-        <name>Set_Request_Pending</name>
-        <label>Set Request Pending</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Notify</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <field>Approval_Status__c</field>
-            <value>
-                <stringValue>Pending</stringValue>
-            </value>
-        </inputAssignments>
-        <object>Part_Code_Request__c</object>
-    </recordUpdates>
     <recordUpdates>
         <name>Update_Approvals</name>
         <label>Update Approvals</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
-        <connector>
-            <targetReference>Set_Request_Pending</targetReference>
-        </connector>
         <inputReference>ApprovalsToUpdate</inputReference>
     </recordUpdates>
     <start>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_Request</targetReference>
+            <targetReference>Get_Rejected</targetReference>
         </connector>
     </start>
     <status>Active</status>
-    <subflows>
-        <name>Notify_Approver</name>
-        <label>Notify Approver</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <connector>
-            <targetReference>Loop_Notify</targetReference>
-        </connector>
-        <flowName>PKR_Notify_Approver</flowName>
-        <inputAssignments>
-            <name>ApproverId</name>
-            <value>
-                <elementReference>Loop_Notify.Approver__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>NotificationBody</name>
-            <value>
-                <elementReference>NotificationBody</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>NotificationTitle</name>
-            <value>
-                <stringValue>Part Code Request resent for approval</stringValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <name>TargetId</name>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </inputAssignments>
-    </subflows>
-    <textTemplates>
-        <name>NewLine</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>
-</text>
-    </textTemplates>
     <variables>
         <name>ApprovalsToUpdate</name>
         <dataType>SObject</dataType>

@@ -7,6 +7,11 @@
     <description>Approvers of Part Code Requests: read requests and part codes, and (through PKR Approve Any) approve or reject any approval.</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Part_Code_Request__c.Stage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PKR_Approval__c.Sector__c</field>
         <readable>true</readable>
     </fieldPermissions>

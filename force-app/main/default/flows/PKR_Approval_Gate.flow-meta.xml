@@ -41,7 +41,7 @@
             <label>Still pending</label>
         </rules>
     </decisions>
-    <description>Whenever an Approval status changes, recomputes the Approval Status of the parent Part Code Request: Rejected if any approval is rejected, Approved when none is pending, otherwise Pending.</description>
+    <description>Whenever an Approval status changes, recomputes the Approval Status of the parent Part Code Request (Rejected if any approval is rejected, Approved when none is pending, otherwise Pending) and moves the Stage between Pending Approval and Ready for Sandbox. Never regresses a request that is already In Sandbox or In Production.</description>
     <environments>Default</environments>
     <interviewLabel>PKR Approval Gate {!$Flow.CurrentDateTime}</interviewLabel>
     <label>PKR Approval Gate</label>
@@ -125,6 +125,9 @@
         <label>Set Approved</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Stage_Ready_For_Sandbox</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -149,10 +152,69 @@
         <object>Part_Code_Request__c</object>
     </recordUpdates>
     <recordUpdates>
+        <name>Stage_Ready_For_Sandbox</name>
+        <label>Stage Ready for Sandbox</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Part_Code_Request__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Pending Approval</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Stage__c</field>
+            <value>
+                <stringValue>Ready for Sandbox</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Part_Code_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Stage_Pending_Approval</name>
+        <label>Stage Pending Approval</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Part_Code_Request__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ready for Sandbox</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Stage__c</field>
+            <value>
+                <stringValue>Pending Approval</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Part_Code_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>Set_Pending</name>
         <label>Set Pending</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Stage_Pending_Approval</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -181,6 +243,9 @@
         <label>Set Rejected</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Stage_Pending_Approval</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
