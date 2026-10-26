@@ -46,17 +46,20 @@ Deploy the same metadata to the sandbox that receives requests (bizops) so `PKR_
 The **New Part Code Request** action appears in the global "+" menu of the Lightning header. Optionally add the
 **Part Code Requests** tab to a Lightning app (App Manager) to browse the requests.
 
-## Relationship with PCR v1
+## PCR v1 (retired)
 
-The rpmdev sandbox already contains the original implementation (PCR v1): a flat `Product_Code_Request__c`
-with 49 fields, 25 `PCR_*` flows, Apex and per-sector approvals. A read-only copy is kept in
-[`reference/pcr-v1`](reference/pcr-v1/README.md) for consultation; it is never deployed.
+The original implementation (PCR v1: a flat `Product_Code_Request__c`, `PCR_Sector__c`, 25+ `PCR_*` flows, Apex and
+per-sector approvals) was removed from rpmdev, bizops and production on 2026-10-26, after v2 went live. A read-only
+copy is kept in [`reference/pcr-v1`](reference/pcr-v1/README.md) for consultation; it is never deployed. Deleted custom
+objects and their records stay recoverable in Setup > Deleted Objects for 15 days after deletion.
 
-v2 is deployed as a **separate** object, `Part_Code_Request__c` ("Part Code Request", `PKR-` auto-number), with
-its own child `Part_Code__c`, so it coexists with v1 without touching it. Once v2 is accepted, v1 can be retired
-(objects, flows, Apex, groups and custom metadata listed in the reference README). Some v1 flows, such as
-`PCR_Create_Product` and `PCR_Autolaunch_Product_Creation`, may be adapted to create the Product2 records from
-Part Codes.
+Two v1-named components were kept on purpose because v2 uses them: the `PCR_Sandbox` named credential (production ->
+bizops connection used by Send to Sandbox / Load Sandbox Build) and the `Product2.Source_PCR_Id__c` external Id field
+(links a product to the Part Code it was built from). bizops also keeps the unused `PCR_Prod` named credential.
+
+Production does not deploy flows as active: after any deploy there, activate the flows (the `FlowDefinition`
+activation package used on 2026-10-26, or Setup > Flows) or enable "Deploy processes and flows as active" in
+Process Automation Settings.
 
 Validate without saving:
 
