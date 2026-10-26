@@ -8,16 +8,32 @@
         <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>$Record.Previous_Decisions__c</assignToReference>
-            <operator>Add</operator>
+            <operator>Assign</operator>
             <value>
-                <elementReference>HistoryLine</elementReference>
+                <elementReference>AppendedHistory</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>$Record.Previous_Decisions__c</assignToReference>
+            <assignToReference>$Record.Round__c</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>NewLine</elementReference>
+                <numberValue>1</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Clear_Decision</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>First_History_Line</name>
+        <label>First History Line</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Previous_Decisions__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>HistoryLine</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -95,6 +111,31 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Has_History</name>
+        <label>Has Previous History?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>First_History_Line</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>First entry</defaultConnectorLabel>
+        <rules>
+            <name>Existing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Previous_Decisions__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Reopen_With_History</targetReference>
+            </connector>
+            <label>Existing</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Which_Status</name>
         <label>Which Status?</label>
         <locationX>0</locationX>
@@ -154,7 +195,7 @@
         <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Reopen_With_History</targetReference>
+            <targetReference>Has_History</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -188,9 +229,9 @@
     </start>
     <status>Active</status>
     <textTemplates>
-        <name>NewLine</name>
+        <name>AppendedHistory</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>
-</text>
+        <text>{!$Record__Prior.Previous_Decisions__c}
+{!HistoryLine}</text>
     </textTemplates>
 </Flow>
