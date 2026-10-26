@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Creator_Or_Admin_Assigns</fullName>
+    <active>true</active>
+    <description>Only the user who created the request or a System Administrator / PKR admin can change the Approver of an approval.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Approver__c),
+    NOT(ISNEW()),
+    $User.Id &lt;&gt; Part_Code_Request__r.CreatedById,
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+    NOT($Permission.PKR_Deploy_Products)
+)</errorConditionFormula>
+    <errorDisplayField>Approver__c</errorDisplayField>
+    <errorMessage>Only the user who created the request or a System Administrator can assign the approver.</errorMessage>
+</ValidationRule>

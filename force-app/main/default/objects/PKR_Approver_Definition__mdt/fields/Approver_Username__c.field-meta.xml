@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Approver_Username__c</fullName>
-    <description>Production username of the approver. Matched with "starts with", so the same value also resolves the .sandbox suffixed username in sandboxes.</description>
+    <description>Production username of the approver. Leave blank to create the approval unassigned (the request creator or a System Administrator assigns it later). Matched with "starts with", so the same value also resolves the .sandbox suffixed username in sandboxes.</description>
     <externalId>false</externalId>
     <fieldManageability>SubscriberControlled</fieldManageability>
     <label>Approver Username</label>
     <length>255</length>
-    <required>true</required>
+    <required>false</required>
     <type>Text</type>
     <unique>false</unique>
 </CustomField>

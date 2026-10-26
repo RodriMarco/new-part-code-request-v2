@@ -10,6 +10,10 @@
     </classAccesses>
     <customPermissions>
         <enabled>true</enabled>
+        <name>PKR_Approve_Any</name>
+    </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
         <name>PKR_Deploy_Products</name>
     </customPermissions>
     <description>Admins of the Part Code Request process: can send requests to the sandbox and deploy products to production.</description>

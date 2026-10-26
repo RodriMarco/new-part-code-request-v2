@@ -57,6 +57,31 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Has_Approver</name>
+        <label>Has Approver?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Notify</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unassigned</defaultConnectorLabel>
+        <rules>
+            <name>Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Notify.Approver__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_Approver</targetReference>
+            </connector>
+            <label>Assigned</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Has_Rejected</name>
         <label>Has Rejected Approvals?</label>
         <locationX>0</locationX>
@@ -100,7 +125,7 @@
         <collectionReference>ApprovalsToUpdate</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Notify_Approver</targetReference>
+            <targetReference>Has_Approver</targetReference>
         </nextValueConnector>
     </loops>
     <loops>

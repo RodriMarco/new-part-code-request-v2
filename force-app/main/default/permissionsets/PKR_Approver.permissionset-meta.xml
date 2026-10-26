@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Approvers of Part Code Requests: read requests and part codes, approve or reject their own approvals.</description>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>PKR_Approve_Any</name>
+    </customPermissions>
+    <description>Approvers of Part Code Requests: read requests and part codes, and (through PKR Approve Any) approve or reject any approval.</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>PKR_Approval__c.Sector__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>PKR_Approval__c.Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>

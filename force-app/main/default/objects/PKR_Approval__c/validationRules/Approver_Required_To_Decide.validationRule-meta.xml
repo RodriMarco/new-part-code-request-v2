@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approver_Required_To_Decide</fullName>
+    <active>true</active>
+    <description>An approval without an assigned approver (for example Product Manager) must get one before it can be decided.</description>
+    <errorConditionFormula>AND(
+    NOT(ISPICKVAL(Status__c, &quot;Pending&quot;)),
+    ISBLANK(Approver__c)
+)</errorConditionFormula>
+    <errorDisplayField>Approver__c</errorDisplayField>
+    <errorMessage>Assign an Approver before approving or rejecting this approval.</errorMessage>
+</ValidationRule>

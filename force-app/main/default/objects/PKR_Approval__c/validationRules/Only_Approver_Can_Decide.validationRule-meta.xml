@@ -2,13 +2,14 @@
 <ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Only_Approver_Can_Decide</fullName>
     <active>true</active>
-    <description>Only the assigned approver (or a PKR admin) can approve or reject.</description>
+    <description>Only the assigned approver, a user with PKR Approve Any, or a PKR admin can approve or reject.</description>
     <errorConditionFormula>AND(
     ISCHANGED(Status__c),
     NOT(ISPICKVAL(Status__c, &quot;Pending&quot;)),
     $User.Id &lt;&gt; Approver__c,
+    NOT($Permission.PKR_Approve_Any),
     NOT($Permission.PKR_Deploy_Products)
 )</errorConditionFormula>
     <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>Only the assigned approver can approve or reject this approval.</errorMessage>
+    <errorMessage>Only the assigned approver (or a user allowed to approve any approval) can approve or reject this approval.</errorMessage>
 </ValidationRule>

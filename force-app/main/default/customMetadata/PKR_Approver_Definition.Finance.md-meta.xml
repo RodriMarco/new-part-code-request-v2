@@ -8,10 +8,10 @@
     </values>
     <values>
         <field>Approver_Username__c</field>
-        <value xsi:type="xsd:string">rodrigo.pedromarco@chyron.com</value>
+        <value xsi:type="xsd:string">FRANKIE_USERNAME</value>
     </values>
     <values>
         <field>Order__c</field>
-        <value xsi:type="xsd:double">2</value>
+        <value xsi:type="xsd:double">1</value>
     </values>
 </CustomMetadata>

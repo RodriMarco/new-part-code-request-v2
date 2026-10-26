@@ -2,6 +2,57 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
     <assignments>
+        <name>Build_Unassigned_Approval</name>
+        <label>Build Unassigned Approval</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>NewApproval</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>EmptyApproval</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewApproval.Part_Code_Request__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewApproval.Sector__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Definitions.Label</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewApproval.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewApproval.Round__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <numberValue>1</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ApprovalsToCreate</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>NewApproval</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Definitions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Build_Approval</name>
         <label>Build Approval</label>
         <locationX>0</locationX>
@@ -60,6 +111,56 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Has_Approver</name>
+        <label>Has Approver?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Notify</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unassigned</defaultConnectorLabel>
+        <rules>
+            <name>Assigned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Notify.Approver__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Notify_Approver</targetReference>
+            </connector>
+            <label>Assigned</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Username</name>
+        <label>Has Username?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Build_Unassigned_Approval</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unassigned</defaultConnectorLabel>
+        <rules>
+            <name>Username_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Definitions.Approver_Username__c</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Approver</targetReference>
+            </connector>
+            <label>Username set</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Approver_Found</name>
         <label>Approver Found?</label>
         <locationX>0</locationX>
@@ -106,7 +207,7 @@
             <label>Some</label>
         </rules>
     </decisions>
-    <description>When a Part Code Request is created (not a sandbox replica), creates one Pending Approval per active PKR Approver Definition, assigned to the user whose username starts with the configured value, and notifies each approver.</description>
+    <description>When a Part Code Request is created (not a sandbox replica), creates one Pending Approval per active PKR Approver Definition. Definitions with a username are assigned to the matching active user and notified; definitions without a username (Product Manager) are created unassigned for the request creator or a System Administrator to assign.</description>
     <environments>Default</environments>
     <formulas>
         <name>NotificationBody</name>
@@ -123,7 +224,7 @@
         <collectionReference>Get_Definitions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Get_Approver</targetReference>
+            <targetReference>Has_Username</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Any_Approvals</targetReference>
@@ -137,7 +238,7 @@
         <collectionReference>ApprovalsToCreate</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Notify_Approver</targetReference>
+            <targetReference>Has_Approver</targetReference>
         </nextValueConnector>
     </loops>
     <processMetadataValues>

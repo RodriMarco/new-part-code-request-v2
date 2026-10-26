@@ -20,7 +20,7 @@
                 <field>Sector__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Approver__c</field>
             </layoutItems>
             <layoutItems>

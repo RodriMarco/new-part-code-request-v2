@@ -80,6 +80,7 @@
         <members>PKR_Approval_Gate</members>
         <members>PKR_Resend_Approvals</members>
         <members>PKR_Resend_Rejected_Approvals</members>
+        <members>PKR_Approval_Notify_On_Assign</members>
         <name>Flow</name>
     </types>
     <types>
@@ -90,12 +91,18 @@
     </types>
     <types>
         <members>PKR_Deploy_Products</members>
+        <members>PKR_Approve_Any</members>
         <name>CustomPermission</name>
     </types>
     <types>
-        <members>PKR_Approver_Definition.Product_Strategy</members>
         <members>PKR_Approver_Definition.Finance</members>
-        <members>PKR_Approver_Definition.Sales</members>
+        <members>PKR_Approver_Definition.Pre_Sales</members>
+        <members>PKR_Approver_Definition.Services_Awerman</members>
+        <members>PKR_Approver_Definition.Services_Toliopoulos</members>
+        <members>PKR_Approver_Definition.Sales_Americas</members>
+        <members>PKR_Approver_Definition.Sales_EMEA</members>
+        <members>PKR_Approver_Definition.Licensing</members>
+        <members>PKR_Approver_Definition.Product_Manager</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -104,6 +111,8 @@
     </types>
     <types>
         <members>PKR_Approval__c.Only_Approver_Can_Decide</members>
+        <members>PKR_Approval__c.Approver_Required_To_Decide</members>
+        <members>PKR_Approval__c.Only_Creator_Or_Admin_Assigns</members>
         <name>ValidationRule</name>
     </types>
     <types>
